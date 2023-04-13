@@ -238,24 +238,24 @@ import static org.junit.Assert.assertEquals;
 
 **Equivalence Partitioning:**
 
-| Tester Action and Input Data | Value to be found | Expected Outcome |
+| Tester Action and Input Data | Value to search | Expected Outcome |
 |------------------------------|-------------------|------------------|
 | Valid partition              |                   |                  |
 | [-3, 4, -1, 1, 0, 13, 5]              | 1              | 3                |
 | [1, 2, 3, 4, 5]          | 1                 | 0                |
 | Invalid partition            |                   |                  |
-| [2, 4, 6, 8]   <br> (v is not present in a)              | 5                 | -1     
+| [1, 2, 3, 4, 5]   <br> (v is not present in a)              | 6                 | -1     
 
 <br>
 
 **Boundary Value Analysis:**
 
-| Tester Action and Input Data | Value to be found | Expected Outcome |
+| Tester Action and Input Data | Value to search | Expected Outcome |
 |------------------------------|-------------------|------------------|
-| Empty array a        | any         |0|
-| [5, 10, 15, 20, 25]    <br> (v is at first position in a)         | 5                 | 0                |
-| [5, 10, 15, 20, 25] <br> (v is at last position in a)         | 25                | 4                |
-|  <h6> Invalid input partition     |                   |                  |
+| Empty array a        | any         |-1|
+| [1, 2, 3, 4, 5]    <br> (v is at first position in a)         | 1                 | 0                |
+| [1, 2, 3, 4, 5] <br> (v is at last position in a)         | 5                | 4                |
+|  Invalid input partition     |                   |                  |
 | v is a non-integer            | 2.2           | Invalid input    |
 | v is a non-number            | a           | Invalid input    |
 
@@ -277,6 +277,7 @@ The function countItem returns the number of times a value v appears in an array
 
 Test File
 
+```java
     import static org.junit.Assert.assertEquals;
     import org.junit.Test;
     
@@ -284,41 +285,36 @@ Test File
     
     	@Test
     	public void testCountItem() {
-    		int[] a = {1, 2, 1, 4, 5};
+    		int[] a = {1, 2, 1, 1, 5};
     		int v = 1;
-    		int expected = 2;
+    		int expected = 3;
     		int actual = CountItem.countItem(v, a);
-    		assertEquals(expected, actual);
-
-            assertEquals(2, obj.countItem(1, arr1));
-            assertEquals(0, obj.countItem(6, arr1));
-            assertEquals(0, obj.countItem(0, arr1));
-    
+    		assertEquals(expected, actual);    
     	}
     }
+```
 
 **Equivalence Partitioning:**
 
-| Tester Action and Input Data | element to Count | Expected Outcome |
+| Tester Action and Input Data | Element to Count | Expected Outcome |
 |------------------------------|-------------------|------------------|
 | Valid partition           |                   |                  |
-| [1, 2, 1, 4, 5]              | 1                 | 2                |
+| [1, 2, 1, 1, 5]              | 1                 | 3                |
 | Invalid partition          |                   |                  |
-| [1, 2, 1, 4, 5] <br>(v is not present in a)        | 6         |0|    
+| [1, 2, 1, 1, 5] <br>(v is not present in a)        | 3         |0|    
 
 <br>
 
 **Boundary Value Analysis:**
 
-| Tester Action and Input Data | element to Count | Expected Outcome |
+| Tester Action and Input Data | Element to Count | Expected Outcome |
 |------------------------------|-------------------|------------------|
 | Empty array a        | any         |0|
-| [1, 2, 1, 4, 5]  <br>(v is present 1 time in array )        | 2        |1|
+| [1, 2, 1, 1, 5]  <br>(v is present 1 time in array )        | 2        |1|
 | [1, 1, 1, 1, 1] <br>(v is present at every index of a )               |1|5|
-| [5, 10, 15, 20, 25] <br>(v is present at the first index of a)        | 5                 | 1                |
-| [5, 10, 15, 20, 25]   <br> (v is present at the last index of a )      | 25                | 1               |
-| [1, 2, 3, 4, 5] v is present at the first index of a         | 1 |1|        |
-|[1, 2, 1, 4, 5]  v is present at the last index of a        | 5        |1|
+| [2, 4, 6, 8, 10] <br>(v is present at the first index of a)        | 2                 | 1                |
+| [2, 4, 6, 8, 10]   <br> (v is present at the last index of a )      | 10                | 1               |
+    
 
 ## P3:
 The function binarySearch searches for a value v in an ordered array of integers a. If v appears in
@@ -347,6 +343,7 @@ Assumption: the elements in the array a are sorted in non-decreasing order.<br>
 
 Test File
 
+```java
     import static org.junit.Assert.assertEquals;
     import org.junit.Test;
     
@@ -354,45 +351,40 @@ Test File
     
     	@Test
     	public void testBinarySearch() {
-    		int[] a = {1, 2, 3, 4, 5};
-    		int v = 3;
-    		int expected = 2;
+    		int[] a = {2, 5, 9, 12, 16};
+    		int v = 5;
+    		int expected = 1;
     		int actual = BinarySearch.binarySearch(v, a);
-    		assertEquals(expected, actual);
-
-            assertEquals(0, obj.binarySearch(2, arr1));
-            assertEquals(1, obj.binarySearch(4, arr1));
-            assertEquals(-1, obj.binarySearch(6, arr1));
-            assertEquals(-1, obj.binarySearch(0, arr1));
-    
+    		assertEquals(expected, actual);    
     	}
     }
+```
 
 **Equivalence Partitioning:**
 
-| Tester Action and Input Data | element to Count | Expected Outcome |
+| Tester Action and Input Data | Element to search | Expected Outcome |
 |------------------------------|-------------------|------------------|
 | Valid partition           |                   |                  |
-| [1, 2, 3, 4, 5]              | 3                 | 2                |
-| [5, 10, 15, 20, 25]          | 5                 | 0   
+| [2, 5, 9, 12, 16]              | 3                 | 2                |
+| [1, 2, 3, 4, 5]          | 5                 | 4   
 | Invalid partition          |                   |                  |
-| [2, 4, 6, 8]                 | 5                 | -1               |
-| [1, 3, 5, 7]                 | 4                 | -1     
+| [1, 3, 5, 7]                 | 2                 | -1               |
+| [3, 7, 9, 11]                 | 5                 | -1     
 
 <br>
 
 **Boundary Value Analysis:**
 
-| Tester Action and Input Data | element to Count | Expected Outcome | 
+| Tester Action and Input Data | Element to search | Expected Outcome | 
 |------------------------------|-------------------|------------------| 
-| empty array a          | any                 | 0              
-| [1, 1, 2 ,2 ,3] <br>(v is present at more than 1 index of a )               |1|5| |         
-| [5, 10, 15, 20, 25]<br> (v is present at the first index of a)         | 5                 | 0              |
-| [5, 10, 15, 20, 25] <br>(v is present at the last index of a)         | 25           | 4 |           
-| <h6>Invalid input    |              
-| [2, 4, 6, 2]<br>(not in sorted order) | any   | Invalid input    |   
-| [2, 4, 6, 8]<br>(non integer)   | 2.2               | Invalid input    |  
-| [2, 4, 6, 8]  <br> (non-number  )        | a                 | Invalid input    | 
+| empty array a          | any                 | -1              
+| [1, 1, 2 ,2 ,3] <br>(v is present at more than 1 index of a )               |1|1| |         
+| [2, 5, 9, 12, 16]<br> (v is present at the first index of a)         | 2                 | 0              |
+| [2, 5, 9, 12, 16] <br>(v is present at the last index of a)         | 16           | 4 |           
+| Invalid input    |              
+| [1, 2, 5, 4, 2]<br>(not sorted) | any   | Invalid input    |   
+| [1, 2, 4, 6]<br>(non integer)   | 1.3               | Invalid input    |  
+| [1, 2, 4, 6]  <br> (non-number)        | x                 | Invalid input    | 
 
 
 <br>
@@ -422,7 +414,8 @@ scalene (no lengths equal), or invalid (impossible lengths).<br>
 <br>
 
 Test File
-
+    
+```java
     import static org.junit.Assert.assertEquals;
     import org.junit.Test;
     
@@ -430,16 +423,16 @@ Test File
     
     	@Test
     	public void testTriangle() {
-    		int a = 5;
-    		int b = 5;
-    		int c = 5;
+    		int a = 3;
+    		int b = 3;
+    		int c = 3;
     		int expected = 0;
     		int actual = Triangle.triangle(a, b, c);
     		assertEquals(expected, actual);
     
-    		a = 5;
-    		b = 5;
-    		c = 6;
+    		a = 3;
+    		b = 3;
+    		c = 4;
     		expected = 1;
     		actual = Triangle.triangle(a, b, c);
     		assertEquals(expected, actual);
@@ -451,32 +444,34 @@ Test File
     		actual = Triangle.triangle(a, b, c);
     		assertEquals(expected, actual);
     
-    		a = 4;
-    		b = 5;
-    		c = 11;
+    		a = 2;
+    		b = 3;
+    		c = 6;
     		expected = 3;
     		actual = Triangle.triangle(a, b, c);
     		assertEquals(expected, actual);
     
     		a = 0;
-    		b = 5;
+    		b = 3;
     		c = 6;
     		expected = 3;
     		actual = Triangle.triangle(a, b, c);
     		assertEquals(expected, actual);
     	}
     }
+```
+    
 
 **Equivalence Partitioning:**
 
 | Tester Action and Input Data     | Expected Outcome      | 
 | ------------- | :---: | 
-| Valid equilateral triangle (a=b=c) <br> a=5, b=5, c=5        | EQUILATERAL         | 
-| Valid isosceles triangle (a=b<c)   <br> a=5, b=5, c=6      | ISOSCELES         | 
+| Valid equilateral triangle (a=b=c) <br> a=3, b=3, c=3        | EQUILATERAL         | 
+| Valid isosceles triangle (a=b<c)   <br> a=3, b=3, c=4      | ISOSCELES         | 
 | Valid scalene triangle (a<b<c)   <br> a=4, b=5, c=6      | SCALENE        | 
 | Invalid partition          |                   |                  |
-| Invalid triangle (a+b<=c) <br> a=4, b=5, c=11         | INVALID       |  
-| Invalid triangle (a=0 or b=0 or c=0)  <br> a=0, b=5, c=6      | INVALID         | 
+| Invalid triangle (a+b<=c) <br> a=2, b=3, c=6         | INVALID       |  
+| Invalid triangle (a=0 or b=0 or c=0)  <br> a=0, b=3, c=6      | INVALID         | 
  
 
 <br>
@@ -485,13 +480,13 @@ Test File
 
 | Tester Action and Input Data     | Expected Outcome      | 
 | ------------- | :---: | 
-| Invalid triangle (a+b<=c)  <br> a=4, b=5, c=11        | INVALID         | 
-| Invalid triangle (a+c<=b)    <br> a=4, b=11, c=4       | INVALID         | 
-| Invalid triangle (b+c<=a)   <br> a=14, b=5, c=1       | INVALID         | 
+| Invalid triangle (a+b<=c)  <br> a=2, b=3, c=6        | INVALID         | 
+| Invalid triangle (a+c<=b)    <br> a=3, b=11, c=5       | INVALID         | 
+| Invalid triangle (b+c<=a)   <br> a=18, b=7, c=5       | INVALID         | 
 | Valid equilateral triangle (a=b=c) <br> a=1, b=1, c=1          | EQUILATERAL         | 
 | Valid isosceles triangle (a=b<c)   <br> a=4, b=4, c=6       | ISOSCELES         | 
-| Valid isosceles triangle (a=c<b)    <br> a=4, b=5, c=4    | ISOSCELES         | 
-| Valid isosceles triangle (b=c<a)  <br> a=8, b=6, c=6      | ISOSCELES         | 
+| Valid isosceles triangle (a=c<b)    <br> a=4, b=6, c=4    | ISOSCELES         | 
+| Valid isosceles triangle (b=c<a)  <br> a=9, b=5, c=5      | ISOSCELES         | 
 | Valid scalene triangle (a<b<c) <br> a=2, b=3, c=4        | SCALENE         | 
 
 <br>
@@ -519,6 +514,7 @@ of string s2 (you may assume that neither s1 nor s2 is null).<br>
 
 Test File
 
+```java
     import static org.junit.Assert.assertEquals;
     import org.junit.Test;
 
@@ -533,40 +529,44 @@ Test File
     		assertEquals(expected, actual);
 
     		s1 = "";
+    		s2 = "hey";
+    		expected = true;
+    		actual = Prefix.prefix(s1, s2);
+    		assertEquals(expected, actual);
+
+    		s1 = "hey";
+    		s2 = "heyeveryone";
+    		expected = true;
+    		actual = Prefix.prefix(s1, s2);
+    		assertEquals(expected, actual);
+
+    		s1 = "hey";
     		s2 = "hello";
-    		expected = true;
-    		actual = Prefix.prefix(s1, s2);
-    		assertEquals(expected, actual);
-
-    		s1 = "hello";
-    		s2 = "helloall";
-    		expected = true;
-    		actual = Prefix.prefix(s1, s2);
-    		assertEquals(expected, actual);
-
-    		s1 = "hello";
-    		s2 = "hiall";
     		expected = false;
     		actual = Prefix.prefix(s1, s2);
     		assertEquals(expected, actual);
 
-    		s1 = "hello";
-    		s2 = "hello";
+    		s1 = "hey";
+    		s2 = "hey";
     		expected = true;
     		actual = Prefix.prefix(s1, s2);
     		assertEquals(expected, actual);
 
+    	}
+    }
+```
+    
 **Equivalence Partitioning:**
 
 | Tester Action and Input Data     | Expected Outcome      | 
 | ------------- | :---: | 
 | Empty string s1 and s2   <br> s1="" , s2=""     | True         | 
-| Empty string s1 and non-empty s2   <br> s1="" , s2="hello"       | True         | 
-| s1 is null <br> s1=NULL , s2="helloall" |NullPointerException         |
-| s2 is null <br> s1="helloall" , s2=NULL |NullPointerException         |
+| Empty string s1 and non-empty s2   <br> s1="" , s2="hey"       | True         | 
+| s1 is null <br> s1=NULL , s2="heyeveryone" |NullPointerException         |
+| s2 is null <br> s1="heyeveryone" , s2=NULL |NullPointerException         |
 | Non-empty s1 is a prefix of non-empty s2 <br> s1="hello" , s2="helloall"        | True         | 
-| Non-empty s1 is not a prefix of s2  <br> s1="hello" , s2="hiall"        | False         | 
-| Non-empty s1 is longer than s2   <br> s1="hello" , s2="hel"       | False         | 
+| Non-empty s1 is not a prefix of s2  <br> s1="hey" , s2="hello"        | False         | 
+| Non-empty s1 is longer than s2   <br> s1="heyy" , s2="hey"       | False         | 
 
 
 <br>
@@ -576,10 +576,10 @@ Test File
 | Tester Action and Input Data     | Expected Outcome      | 
 | ------------- | :---: | 
 | Empty string s1 and s2     <br> s1="" , s2=""     | True         | 
-|  string s1 and s2  of single length <br> s1="a" , s2="a"      | True         | 
-| Empty string s1 and non-empty s2  <br> s1="" , s2="hello"        | True         | 
-|same string s1 and s2  of highest possible length <br> s1="a.." , s2="a.."          | True         | 
-| Non-empty s1 is longer than s2 <br> s1="hello" , s2="hel"          | False         | 
+|  string s1 and s2  of single length <br> s1="h" , s2="h"      | True         | 
+| Empty string s1 and non-empty s2  <br> s1="" , s2="hey"        | True         | 
+|same string s1 and s2  of highest possible length <br> s1="h.." , s2="h.."          | True         | 
+| Non-empty s1 is longer than s2 <br> s1="heyy" , s2="hey"          | False         | 
 
 
 <br>
@@ -594,10 +594,14 @@ Determine the following for the above program:
 
 a) Identify the equivalence classes for the system<br>
 
-    Test case 1:  All sides are positive, real numbers.
-    Test case 2:  Any side is negative or zero.
-    Test case 3:  Summation rule is not satisfied.
-    Test case 4:  Summation rule is satisfied.
+    Equivalence class 1:  
+        All sides are positive, real numbers.
+    Equivalence class 2:  
+        Any side is negative or zero.
+    Equivalence class 3:  
+        Summation rule is not satisfied.
+    Equivalence class 4:  
+        Summation rule is satisfied.
 <br>
 b) Identify test cases to cover the identified equivalence classes. Also, explicitly mention which test case
 would cover which equivalence class.<br>(Hint: you must need to be ensure that the identified set of test cases cover all identified equivalence
@@ -605,21 +609,30 @@ classes)
 
 <br>
 
-    Test case 1 : A=5, B=5, C=5 (equilateral triangle)
-    Test case 2 : A=5, B=5, C=7 (isosceles triangle)
-    Test case 3 : A=5, B=6, C=7 (scalene triangle)
-    Test case 4 : A=5, B=6, C=0 (invalid input)
-    Test case 5 : A=5, B=6, C=-1 (invalid input)
-    Test case 6 : A=5, B=6, C=11 (invalid input)
+    Test case 1 : 
+        A=3, B=3, C=3 (equilateral triangle)(EC1,EC4)
+    Test case 2 : 
+        A=3, B=3, C=4 (isosceles triangle)(EC1,EC4)
+    Test case 3 : 
+        A=5, B=6, C=7 (scalene triangle)(EC1,EC4)
+    Test case 4 : 
+        A=2, B=4, C=0 (invalid input)(EC2)
+    Test case 5 : 
+        A=5, B=6, C=-1 (invalid input)(EC2)
+    Test case 6 : 
+        A=3, B=4, C=11 (invalid input)(EC3)
 
 
 
 c) For the boundary condition A + B > C case (scalene triangle), identify test cases to verify the
 boundary.<br>
 
-    Test case 1 : A=5, B=6, C=10 (c=a+b-1) (valid scalene triangle)
-    Test case 2 : A=5, B=6, C=11 (c=a+b) (invalid input)
-    Test case 3 : A=5, B=6, C=12 (c=a+b+1) (invalid input)
+    Test case 1 : 
+        A=3, B=4, C=6 (c<a+b) (valid scalene triangle)
+    Test case 2 : 
+        A=3, B=4, C=7 (c=a+b) (invalid input)
+    Test case 3 : 
+        A=3, B=4, C=10 (c>a+b) (invalid input)
 
 <br>
 
@@ -627,9 +640,12 @@ d) For the boundary condition A = C
 case (isosceles triangle), identify test cases to verify the
 boundary.<br>
 
-    Test case 1 : A=5, B=6, C=5 (c=a) (valid isosceles triangle)
-    Test case 2 : A=5, B=11, C=5 (c=a) (invlid input as b>a+c)
-    Test case 3 : A=5, B=5, C=5 (c=a) (equilateral triangle)
+    Test case 1 : 
+        A=3, B=4, C=3 (c=a) (valid isosceles triangle)
+    Test case 2 : 
+        A=3, B=7, C=3 (c=a) (invlid input as b>a+c)
+    Test case 3 : 
+        A=3, B=3, C=3 (c=a) (equilateral triangle)
 
 <br>
 e) For the boundary condition A = B = C 
@@ -637,28 +653,35 @@ case (equilateral triangle), identify test cases to verify the
 boundary.<br>
 <br>
 
-    Test case 1 : A=5, B=5, C=5 (valid equilateral triangle)
+    Test case 1 : 
+        A=3, B=3, C=3 (valid equilateral triangle)
 
 f) For the boundary condition  A^2 + B^2 = C^2
 case (right-angle triangle), identify test cases to verify
 the boundary.<br>
 <br>
     
-    test case 1 : A=3, B=4, C=5 (valid right-angle triangle)
-    Test case 2 : A=IntMax, B=IntMax, C=IntMax (overflow error)
+    test case 1 : 
+        A=3, B=4, C=5 (valid right-angle triangle)
+    Test case 2 : 
+        A=IntMax, B=IntMax, C=IntMax (overflow error)
 
 
 g) For the non-triangle case, identify test cases to explore the boundary.<br>
 <br>
 
-    Test case 1 : A=5, B=6, C=11 (invalid input as a+b=c)
-    Test case 2 : A=5, B=6, C=12 (invalid input as a+b+1=c)
+    Test case 1 : 
+        A=5, B=6, C=11 (invalid input as a+b=c)
+    Test case 2 : 
+        A=5, B=6, C=12 (invalid input as a+b+1=c)
 
 h) For non-positive input, identify test points.
 <br>
 
-    Test case 1 : A=0, B=6, C=11 (invalid input as a=0)
-    Test case 2 : A=-5, B=6, C=11 (invalid input as a<0)
+    Test case 1 : 
+        A=0, B=6, C=11 (invalid input as a=0)
+    Test case 2 : 
+        A=-5, B=6, C=11 (invalid input as a<0)
 
 
 
@@ -668,7 +691,7 @@ h) For non-positive input, identify test points.
 
 The code below is part of a method in the ConvexHull class in the VMAP system. The following is a small fragment of a method in the ConvexHull class. For the purposes of this exercise you do not need to know the intended function of the method. The parameter p is a Vector of Point objects, p.size() is the size of the vector p, (p.get(i)).x is the x component of the i th point appearing in p, similarly for (p.get(i)).y. This exercise is concerned with structural testing of code and so the focus is on creating test sets that satisfy some particular coverage criterion.
 <br>
-
+```java
 Vector doGraham (Vector p) { 
     int i,j,min,M;
     Point t;
@@ -695,6 +718,7 @@ Vector doGraham (Vector p) {
         }
     }
 }
+```
 
 <br>
 1. Convert the Java code comprising the beginning of the doGraham method into a control flow graph
