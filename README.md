@@ -726,100 +726,82 @@ Vector doGraham (Vector p) {
 <br>
 <br>
 
-```
-        +-----+
-        | i = 1|
-        +-----+
-           |
-           |
-           v
-+---------------+
-| i < p.size()   |
-+---------------+
-     | true
-     |
-     v
-+-----------------------+
-| ((Point)p.get(i)).y < ((Point)p.get(min)).y |
-+-----------------------+
-    | true        | false
-    |             |
-    v             v
-+---------------+    +---------------+
-| min = i       |    | i++           |
-+---------------+    +---------------+
-     |                   |
-     |                   |
-     v                   v
-+---------------+    +---------------+
-| i < p.size()   |    | return doStack(p) |
-+---------------+    +---------------+
-     | false             |
-     |                   |
-     v                   v
-+------------------------+
-| ((Point)p.get(i)).y == ((Point)p.get(min)).y |
-+------------------------+
-        | true           | false
-        |                |
-        v                v
-+------------------------+  +---------------+
-| ((Point)p.get(i)).x > ((Point)p.get(min)).x|
-+------------------------+  +---------------+
-        | true           | false
-        |                |
-        v                v
-+---------------+    +---------------+
-| min = i       |    | i++           |
-+---------------+    +---------------+
-        |                |
-        |                |
-        v                v
-+---------------+    +---------------+
-| i < p.size()   |    | return doStack(p) |
-+---------------+    +---------------+
-        | false            |
-        |                  |
-        v                  v
-+--------------------------+
-| return doStack(p)         |
-+--------------------------+
-```
+
+![image](https://user-images.githubusercontent.com/124247649/231752130-d61d8c30-b248-4c6a-82f8-fd0517bde4d6.png)
+
 2. Construct test sets for your flow graph that are adequate for the following criteria:
 a. Statement Coverage.
 To achieve statement coverage, we need to make sure that every statement in the code is executed at least once.
 <br>
 
-        Test 1: p = empty vector
-        Test 2: p = vector with one point
-        Test 3: p = vector with two points with the same y component
-        Test 4: p = vector with two points with different y components
-        Test 5: p = vector with three or more points with different y components
-        Test 6: p = vector with three or more points with the same y component
+        Test 1: 
+            p = empty vector
+        Test 2: 
+            p = vector with one point
+        Test 3: 
+            p = vector with two points with the same y component
+        Test 4: 
+            p = vector with two points with different y components
+        Test 5: 
+            p = vector with three or more points with different y components
+        Test 6: 
+            p = vector with three or more points with the same y component
 
 <br>
 b. Branch Coverage.
 To achieve branch coverage, we need to make sure that every possible branch in the code is taken at least once
 <br>
 
-        Test 1: p = empty vector
-        Test 2: p = vector with one point
-        Test 3: p = vector with two points with the same y component
-        Test 4: p = vector with two points with different y components
-        Test 5: p = vector with three or more points with different y components, and none of them have the same x component
-        Test 6: p = vector with three or more points with the same y component, and some of them have the same x component
-        Test 7: p = vector with three or more points with the same y component, and all of them have the same x component
+        Test 1: 
+            p = empty vector
+        Test 2: 
+            p = vector with one point
+        Test 3: 
+            p = vector with two points with the same y component
+        Test 4: 
+            p = vector with two points with different y components
+        Test 5: 
+            p = vector with three or more points with different y components, and none of them have the same x component
+        Test 6: 
+            p = vector with three or more points with the same y component, and some of them have the same x component
+        Test 7: 
+            p = vector with three or more points with the same y component, and all of them have the same x component
 
 c. Basic Condition Coverage.
 To achieve basic condition coverage, we need to make sure that every basic condition in the code (i.e., every Boolean subexpression) is evaluated as both true and false at least once
 <br>
 
-        Test 1: p = empty vector
-        Test 2: p = vector with one point
-        Test 3: p = vector with two points with the same y component
-        Test 4: p = vector with two points with different y components
-        Test 5: p = vector with three or more points with different y components, and none of them have the same x component
-        Test 6: p = vector with three or more points with the same y component, and some of them have the same x component
-        Test 7: p = vector with three or more points with the same y component, and all of them have the same x component
-        Test 8: p = vector with three or more points with the same y component, and some of them have the same x component, and the first point has a smaller x component
+        Test 1: 
+            p = empty vector
+        Test 2: 
+            p = vector with one point
+        Test 3: 
+            p = vector with two points with the same y component
+        Test 4: 
+            p = vector with two points with different y components
+        Test 5: 
+            p = vector with three or more points with different y components, and none of them have the same x component
+        Test 6: 
+            p = vector with three or more points with the same y component, and some of them have the same x component
+        Test 7: 
+            p = vector with three or more points with the same y component, and all of them have the same x component
+        Test 8: 
+            p = vector with three or more points with the same y component, and some of them have the same x component, and the first point has a smaller x component
 <br>
+    
+Test cases examples: 
+<br>
+
+        Test case 1: 
+            p=[(x=2,y=3),(x=2,y=2),(x=1,y=5),(x=1,y=4)]
+        Test case 2: 
+            p=[(x=5,y=6),(x=3,y=2),(x=3,y=4),(x=1,y=2)]
+        Test case 3: 
+            p=[(x=5,y=6),(x=3,y=5),(x=1,y=5),(x=4,y=5),(x=2,y=7)]
+        Test case 4: 
+            p=[(x=7,y=8)]
+        Test case 5: 
+            p=[]
+<br>
+
+These 5 test cases covers all - statement coverage, branch coverage and basic condition coverage. 
